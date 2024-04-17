@@ -98,7 +98,6 @@ public class Player : MonoBehaviour
         for (int i = 1; i < 50; i++)
         {
             Ray ray = new Ray(transform.position + dir * i, Vector3.down);
-            Debug.DrawRay(transform.position + dir * i, Vector3.down, Color.red, 20f);
             if (Physics.Raycast(ray, out hit, 5f, brickLayer) || Physics.Raycast(ray, out hit, 5f, unBrickLayer))
             {
                 lastHitPoint = new Vector3(hit.point.x, transform.position.y, hit.point.z);
@@ -130,23 +129,30 @@ public class Player : MonoBehaviour
 
     private void RemoveBrick()
     {
-        //lay vien gach tren cung
-        GameObject brick = brickList[brickList.Count - 1];
-        //xoa vien gach ra khoi list
-        brickList.Remove(brick);
-        //destroy vien gach di
-        Destroy(brick);
-        //set position cua player 
-        playerSprite.transform.localPosition = brickList[brickList.Count - 1].transform.localPosition;
+        if (brickList.Count > 0)
+        {
+            //lay vien gach tren cung
+            GameObject brick = brickList[brickList.Count - 1];
+            //xoa vien gach ra khoi list
+            brickList.Remove(brick);
+            //destroy vien gach di
+            Destroy(brick);
+            //set position cua player 
+            playerSprite.transform.localPosition = brickList[brickList.Count - 1].transform.localPosition;
+        }
     }
 
     private void ClearBrick()
     {
         //destroy toan bo vien gach trong list
+        foreach (var brick in brickList)
+        {
+            Destroy(brick);
+        }
+        //xoa het gach trong list
         brickList.Clear();
-        
         //set position cua player 
-
+        playerSprite.transform.localPosition = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -159,12 +165,15 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("UnBrick"))
         {
-            Debug.Log("Before: " + other.name + " " + other.transform.position);
-            RemoveBrick();
+            if(brickList.Count > 0)
+            {
+                RemoveBrick();
+            }
         }
 
         if (other.gameObject.CompareTag("Finish"))
         {
+            ClearBrick();
             Debug.Log("Win game");
         }
     }
