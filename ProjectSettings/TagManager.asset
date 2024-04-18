@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UnBrick
   - Brick
+  - Caro
   - Wall
   - PlayerBrick
   layers:

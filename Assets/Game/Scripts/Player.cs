@@ -9,6 +9,9 @@ public enum Direction
 
 public class Player : MonoBehaviour
 {
+    public delegate void WinGameDelegate();
+    public static WinGameDelegate winGameEvent;
+
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
     [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite;
@@ -174,7 +177,8 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
         {
             ClearBrick();
-            Debug.Log("Win game");
+            //phat di su kien khi win game
+            winGameEvent?.Invoke();
         }
     }
 }
