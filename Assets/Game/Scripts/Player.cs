@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 {
     public delegate void WinGameDelegate();
     public static WinGameDelegate winGameEvent;
+    public static Player Instance;
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
@@ -21,6 +22,11 @@ public class Player : MonoBehaviour
     private List<GameObject> brickList = new List<GameObject>();
 
     private bool isMoving = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -174,9 +180,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (other.gameObject.CompareTag("Finish"))
+        if (other.gameObject.CompareTag("CloseBox"))
         {
             ClearBrick();
+            
             //phat di su kien khi win game
             winGameEvent?.Invoke();
         }

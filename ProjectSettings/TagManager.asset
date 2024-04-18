@@ -6,9 +6,10 @@ TagManager:
   tags:
   - UnBrick
   - Brick
+  - Teleport
+  - CloseBox
+  - OpenBox
   - Caro
-  - Wall
-  - PlayerBrick
   layers:
   - Default
   - TransparentFX

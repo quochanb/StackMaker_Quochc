@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Maps : MonoBehaviour
 {
-    public Transform playerStartPoint;
+    public Transform playerPos, finishPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
