@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1810856456}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,8 +89,7 @@ MonoBehaviour:
   brickPrefab: {fileID: 1531101969777205, guid: 8aad5fca35890fd4389dabb982d52236, type: 3}
   brickHolder: {fileID: 1921473491}
   playerSprite: {fileID: 6546050206208077633}
-  winBox: {fileID: 4152717684728650110, guid: e643424741718d446b1b915d2fe753b2, type: 3}
-  particalPrefab: {fileID: 4658726192241454449, guid: bdbcb8e7e0db74d49a3177bbda34d941, type: 3}
+  boxWin: {fileID: 5041166160736488861, guid: 6b34f223d7492c64682b67fe4781c642, type: 3}
 --- !u!136 &1482111754
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -170,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4538506697404122, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.25881898
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4538506697404122, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -178,11 +177,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4538506697404122, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9659259
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538506697404122, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4538506697404122, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 210
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2580899147284204563, guid: c84b41a4245d5c241bc7ff57b0cca3f4, type: 3}
       propertyPath: m_RootOrder

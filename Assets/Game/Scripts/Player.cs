@@ -15,13 +15,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
-    [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite;
+    [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite, boxWin;
     private Direction direction;
     private Vector2 startPosition, endPosition;
     private Vector3 lastHitPoint;
     private List<GameObject> brickList = new List<GameObject>();
 
     private bool isMoving = false;
+    private bool playerPassed = false;
 
     private void Awake()
     {
@@ -172,20 +173,30 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
-        if (other.gameObject.CompareTag("UnBrick"))
-        {
-            if(brickList.Count > 0)
-            {
-                RemoveBrick();
-            }
-        }
-
-        if (other.gameObject.CompareTag("CloseBox"))
+        if (other.gameObject.CompareTag("Finish"))
         {
             ClearBrick();
-            
+            other.gameObject.SetActive(false);
+            boxWin.SetActive(true);
             //phat di su kien khi win game
             winGameEvent?.Invoke();
+        }
+
+        if (other.gameObject.CompareTag("UnBrick"))
+        {
+            if (brickList.Count > 0 && !playerPassed)
+            {
+                RemoveBrick();
+                playerPassed = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("UnBrick"))
+        {
+            playerPassed = false;
         }
     }
 }

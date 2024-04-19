@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform startPoint;
 
     private int currentMapIndex = 0;
-    private int currentLevel = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -40,20 +39,20 @@ public class LevelManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        currentLevel++;
-        if (currentMapIndex <= levelPrefab.Length - 1)
+        if (currentMapIndex < levelPrefab.Length)
         {
             currentMapIndex++;
             //tao level tiep theo bang prefab
             GameObject nextMap = Instantiate(levelPrefab[currentMapIndex], Vector3.zero, Quaternion.identity);
             //lay diem bat dau level moi
             startPoint = nextMap.GetComponent<Maps>().playerPos;
-
-            currentMap.SetActive(false);
-            nextMap = currentMap;
+            //xoa map cu di
+            Destroy(currentMap.gameObject);
+            //gan map hien tai thanh map moi
+            currentMap = nextMap;
+            //set lai vi tri player thanh vi tri start
             Player.Instance.transform.position = startPoint.position;
         }
-
     }
 
     private void OnRetryGame()

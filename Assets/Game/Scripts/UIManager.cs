@@ -35,14 +35,12 @@ public class UIManager : MonoBehaviour
         menuUI.SetActive(false);
         gameUI.SetActive(true);
         startGameEvent?.Invoke();
-        //Time.timeScale = 1;
     }
 
     private void OnPauseGame()
     {
         settingUI.SetActive(true);
         pauseGameEvent?.Invoke();
-        //Time.timeScale = 0;
     }
 
     private void OnWinGame()
