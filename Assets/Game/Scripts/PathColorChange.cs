@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathColorChange : MonoBehaviour
 {
-    private Color pathColor = Color.yellow;
+    private Color pathColor = new Color(255, 219, 76, 255);
     private Renderer pathRenderer;
 
     private void Start()
@@ -16,8 +16,7 @@ public class PathColorChange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Collision");
-            pathRenderer.material.color = pathColor;
+            pathRenderer.material.SetColor("_Color", new Color(255, 219, 76, 255));
         }
     }
 }

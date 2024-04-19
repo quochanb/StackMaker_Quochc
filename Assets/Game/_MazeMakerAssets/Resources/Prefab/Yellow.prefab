@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8924240637514130507}
   m_Layer: 3
   m_Name: Yellow
-  m_TagString: Untagged
+  m_TagString: Path
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

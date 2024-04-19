@@ -15,9 +15,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
-    [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite, boxWin;
-    [SerializeField] private GameObject particle;
-    private GameObject finishPoint;
+    [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite, winBoxPrefab;
     private Direction direction;
     private Vector2 startPosition, endPosition;
     private Vector3 lastHitPoint;
@@ -186,18 +184,17 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Finish"))
         {
-            ClearBrick();
             other.gameObject.SetActive(false);
-            boxWin.SetActive(true);
-            //phat di su kien khi win game
-            winGameEvent?.Invoke();
         }
 
         if (other.gameObject.CompareTag("FinishPoint"))
         {
-            Vector3 finishPos = finishPoint.GetComponent<Maps>().finishPos.position;
-            GameObject instanParticle = Instantiate(particle, finishPos, Quaternion.identity);
-            instanParticle.GetComponent<ParticleSystem>().Play();
+            ClearBrick();
+
+            GameObject winBox = Instantiate(winBoxPrefab, transform.position + new Vector3(0, -0.5f, 3), Quaternion.Euler(-90, 0, -180));
+            winBox.SetActive(true);
+            //phat di su kien khi win game
+            winGameEvent?.Invoke();
         }
     }
 

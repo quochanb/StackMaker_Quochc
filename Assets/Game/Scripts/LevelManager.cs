@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
         //instantiate map
         currentMap = Instantiate(levelPrefab[currentMapIndex], Vector3.zero, Quaternion.identity);
         startPoint = currentMap.GetComponent<Maps>().playerPos;
-
         //instantiate player
         GameObject playerInstance = Instantiate(playerPrefab, startPoint.position, Quaternion.identity);
         Camera.main.GetComponent<CameraFollow>().target = playerInstance.transform;
@@ -64,5 +63,4 @@ public class LevelManager : MonoBehaviour
         string currentLevelName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentLevelName);
     }
-
 }
