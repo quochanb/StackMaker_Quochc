@@ -7,9 +7,10 @@ TagManager:
   - UnBrick
   - Brick
   - Teleport
-  - CloseBox
   - OpenBox
   - Caro
+  - PlayerBrick
+  - FinishPoint
   layers:
   - Default
   - TransparentFX

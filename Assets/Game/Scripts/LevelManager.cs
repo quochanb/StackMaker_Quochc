@@ -53,6 +53,10 @@ public class LevelManager : MonoBehaviour
             //set lai vi tri player thanh vi tri start
             Player.Instance.transform.position = startPoint.position;
         }
+        else
+        {
+            Debug.Log("No more level to load");
+        }
     }
 
     private void OnRetryGame()

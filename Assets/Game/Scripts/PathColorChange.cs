@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class PathColorChange : MonoBehaviour
 {
-    [SerializeField] private Color pathColor;
-    private MeshRenderer meshRenderer;
+    private Color pathColor = Color.yellow;
+    private Renderer pathRenderer;
 
     private void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        pathRenderer = GetComponent<Renderer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            meshRenderer.material.color = pathColor;
+            Debug.Log("Collision");
+            pathRenderer.material.color = pathColor;
         }
     }
 }

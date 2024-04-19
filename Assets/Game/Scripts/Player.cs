@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
     [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite, boxWin;
+    [SerializeField] private GameObject particle;
+    private GameObject finishPoint;
     private Direction direction;
     private Vector2 startPosition, endPosition;
     private Vector3 lastHitPoint;
@@ -173,6 +175,15 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
+        if (other.gameObject.CompareTag("UnBrick"))
+        {
+            if (brickList.Count > 0 && !playerPassed)
+            {
+                RemoveBrick();
+                playerPassed = true;
+            }
+        }
+
         if (other.gameObject.CompareTag("Finish"))
         {
             ClearBrick();
@@ -182,13 +193,11 @@ public class Player : MonoBehaviour
             winGameEvent?.Invoke();
         }
 
-        if (other.gameObject.CompareTag("UnBrick"))
+        if (other.gameObject.CompareTag("FinishPoint"))
         {
-            if (brickList.Count > 0 && !playerPassed)
-            {
-                RemoveBrick();
-                playerPassed = true;
-            }
+            Vector3 finishPos = finishPoint.GetComponent<Maps>().finishPos.position;
+            GameObject instanParticle = Instantiate(particle, finishPos, Quaternion.identity);
+            instanParticle.GetComponent<ParticleSystem>().Play();
         }
     }
 
