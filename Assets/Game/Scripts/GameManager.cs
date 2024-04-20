@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameState state;
+    public GameState currentState;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        ChangeGameState(GameState.Pause);
+        currentState = GameState.Pause;
     }
 
     private void OnEnable()
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGameState(GameState newState)
     {
-        this.state = newState;
+        this.currentState = newState;
         switch (newState)
         {
             case GameState.Play:

@@ -24,11 +24,13 @@ public class SettingUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         retryGameEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Play);
     }
 
     private void OnContinueGame()
     {
         gameObject.SetActive(false);
         continueGameEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Play);
     }
 }

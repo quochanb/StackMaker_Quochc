@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     {
         startBtn.onClick.AddListener(OnStartGame);
         settingBtn.onClick.AddListener(OnPauseGame);
+        GameManager.instance.ChangeGameState(GameState.Pause);
     }
 
     private void OnEnable()
@@ -35,12 +36,14 @@ public class UIManager : MonoBehaviour
         menuUI.SetActive(false);
         gameUI.SetActive(true);
         startGameEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Play);
     }
 
     private void OnPauseGame()
     {
         settingUI.SetActive(true);
         pauseGameEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Pause);
     }
 
     private void OnWinGame()
@@ -52,5 +55,6 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         winUI.SetActive(true);
+        GameManager.instance.ChangeGameState(GameState.Pause);
     }
 }

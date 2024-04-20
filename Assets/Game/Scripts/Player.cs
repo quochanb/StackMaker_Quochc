@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private Vector2 startPosition, endPosition;
     private Vector3 lastHitPoint;
     private List<GameObject> brickList = new List<GameObject>();
-    private GameState gameState;
+    //private GameState gameState;
     private bool isMoving = false;
 
     private void Awake()
@@ -37,11 +37,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.state == GameState.Play)
+        if (GameManager.instance.currentState == GameState.Play)
         {
-
             GetInput();
-            gameState = GameState.Play;
+            
             if (Vector3.Distance(transform.position, lastHitPoint) < 0.2f)
             {
                 isMoving = false;
@@ -52,6 +51,10 @@ public class Player : MonoBehaviour
                 Moving();
                 isMoving = true;
             }
+        }
+        else if(GameManager.instance.currentState == GameState.Pause)
+        {
+            return;
         }
     }
 

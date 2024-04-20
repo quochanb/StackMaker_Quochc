@@ -23,11 +23,13 @@ public class WinUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         nextLevelEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Play);
     }
 
     private void OnRetryGame()
     {
         gameObject.SetActive(false);
         retryGameEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Play);
     }
 }
