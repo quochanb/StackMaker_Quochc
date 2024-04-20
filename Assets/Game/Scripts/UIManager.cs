@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
         menuUI.SetActive(false);
         gameUI.SetActive(true);
         startGameEvent?.Invoke();
-        GameManager.instance.ChangeGameState(GameState.Play);
+        StartCoroutine(DelayCallChangeState());
     }
 
     private void OnPauseGame()
@@ -48,13 +48,18 @@ public class UIManager : MonoBehaviour
 
     private void OnWinGame()
     {
-        StartCoroutine(DelayTime(2));
+        StartCoroutine(DelayTime());
     }
 
-    IEnumerator DelayTime(float time)
+    IEnumerator DelayTime()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(2f);
         winUI.SetActive(true);
         GameManager.instance.ChangeGameState(GameState.Pause);
+    }
+    IEnumerator DelayCallChangeState()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.ChangeGameState(GameState.Play);
     }
 }

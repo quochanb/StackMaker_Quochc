@@ -82,7 +82,6 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 endPosition = Input.mousePosition;
-
                 Vector2 swipe = endPosition - startPosition;
                 if (Mathf.Abs(swipe.x) > Mathf.Abs(swipe.y))
                 {
