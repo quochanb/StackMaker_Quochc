@@ -45,12 +45,12 @@ public class UIManager : MonoBehaviour
 
     private void OnWinGame()
     {
-        StartCoroutine(DelayTime());
+        StartCoroutine(DelayTime(2));
     }
 
-    IEnumerator DelayTime()
+    IEnumerator DelayTime(float time)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(time);
         winUI.SetActive(true);
     }
 }

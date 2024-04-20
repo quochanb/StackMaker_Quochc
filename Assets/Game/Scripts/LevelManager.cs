@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject[] levelPrefab;
     [SerializeField] private Transform startPoint;
 
+    GameObject playerInstance;
+
     private int currentMapIndex = 0;
 
     // Start is called before the first frame update
@@ -18,7 +20,7 @@ public class LevelManager : MonoBehaviour
         currentMap = Instantiate(levelPrefab[currentMapIndex], Vector3.zero, Quaternion.identity);
         startPoint = currentMap.GetComponent<Maps>().playerPos;
         //instantiate player
-        GameObject playerInstance = Instantiate(playerPrefab, startPoint.position, Quaternion.identity);
+        playerInstance = Instantiate(playerPrefab, startPoint.position, Quaternion.identity);
         Camera.main.GetComponent<CameraFollow>().target = playerInstance.transform;
     }
 
@@ -50,7 +52,9 @@ public class LevelManager : MonoBehaviour
             //gan map hien tai thanh map moi
             currentMap = nextMap;
             //set lai vi tri player thanh vi tri start
-            Player.Instance.transform.position = startPoint.position;
+            Player.instance.transform.position = startPoint.position;
+            //reset lai last hit point
+            playerInstance.GetComponent<Player>().SetLastHitPoint(startPoint.position);
         }
         else
         {

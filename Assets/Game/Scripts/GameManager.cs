@@ -1,30 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+public enum GameState
+{
+    Play, Pause
+}
+
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    public GameState state;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
-        Time.timeScale = 0;
+        ChangeGameState(GameState.Pause);
     }
 
     private void OnEnable()
     {
-        UIManager.startGameEvent += OnStartGame;
+        UIManager.startGameEvent += OnPlayGame;
         UIManager.pauseGameEvent += OnPauseGame;
-        SettingUI.continueGameEvent += OnContinueGame;
+        SettingUI.continueGameEvent += OnPlayGame;
     }
 
     private void OnDisable()
     {
-        UIManager.startGameEvent -= OnStartGame;
+        UIManager.startGameEvent -= OnPlayGame;
         UIManager.pauseGameEvent -= OnPauseGame;
-        SettingUI.continueGameEvent -= OnContinueGame;
+        SettingUI.continueGameEvent -= OnPlayGame;
     }
 
-    private void OnStartGame()
+    public void ChangeGameState(GameState newState)
+    {
+        this.state = newState;
+        switch (newState)
+        {
+            case GameState.Play:
+                OnPlayGame();
+                break;
+            case GameState.Pause:
+                OnPauseGame();
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void OnPlayGame()
     {
         Time.timeScale = 1;
     }
@@ -32,10 +64,5 @@ public class GameManager : MonoBehaviour
     private void OnPauseGame()
     {
         Time.timeScale = 0;
-    }
-
-    private void OnContinueGame()
-    {
-        Time.timeScale = 1;
     }
 }

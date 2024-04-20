@@ -9,6 +9,8 @@ TagManager:
   - Teleport
   - FinishPoint
   - Path
+  - PlayerBrick
+  - Passed
   layers:
   - Default
   - TransparentFX

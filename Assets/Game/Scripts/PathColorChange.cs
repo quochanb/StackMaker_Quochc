@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PathColorChange : MonoBehaviour
 {
-    private Color pathColor = new Color(255, 219, 76, 255);
-    private Renderer pathRenderer;
+    [SerializeField] private Material pathColor;
+    [SerializeField] private MeshRenderer pathRenderer;
 
     private void Start()
     {
-        pathRenderer = GetComponent<Renderer>();
+        pathRenderer = GetComponent<MeshRenderer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            pathRenderer.material.SetColor("_Color", new Color(255, 219, 76, 255));
+            pathRenderer.material = pathColor;
         }
     }
 }

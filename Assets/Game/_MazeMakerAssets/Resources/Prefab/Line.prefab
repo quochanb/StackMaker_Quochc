@@ -123,11 +123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466079004233095, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4466079004233095, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.026
       objectReference: {fileID: 0}
     - target: {fileID: 4466079004233095, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23359260050137393, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30c2c0f0c58c97744adf2be84ee0a542, type: 2}
     - target: {fileID: 23359260050137393, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -197,9 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186a5a18401876c4192a953e4b999b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathColor: {r: 0.654902, g: 0.5019608, b: 0.043137256, a: 0}
+  pathColor: {fileID: 2100000, guid: 8e1dcae3c0825464fa971154309a65e1, type: 2}
+  pathRenderer: {fileID: 4562381928413367311}
 --- !u!4 &4543558970113695929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4466079004233095, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
+  m_PrefabInstance: {fileID: 4540238857106140478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4562381928413367311 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23359260050137393, guid: d04d393ce76715f498cdd8615b8940a4, type: 3}
   m_PrefabInstance: {fileID: 4540238857106140478}
   m_PrefabAsset: {fileID: 0}

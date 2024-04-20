@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
 
@@ -11,7 +13,7 @@ public class Player : MonoBehaviour
 {
     public delegate void WinGameDelegate();
     public static WinGameDelegate winGameEvent;
-    public static Player Instance;
+    public static Player instance;
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
@@ -20,13 +22,12 @@ public class Player : MonoBehaviour
     private Vector2 startPosition, endPosition;
     private Vector3 lastHitPoint;
     private List<GameObject> brickList = new List<GameObject>();
-
+    private GameState gameState;
     private bool isMoving = false;
-    private bool playerPassed = false;
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     void Start()
@@ -36,16 +37,27 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        GetInput();
-        if (Vector3.Distance(transform.position, lastHitPoint) < 0.1f)
+        if (GameManager.instance.state == GameState.Play)
         {
-            isMoving = false;
+
+            GetInput();
+            gameState = GameState.Play;
+            if (Vector3.Distance(transform.position, lastHitPoint) < 0.2f)
+            {
+                isMoving = false;
+                transform.position = lastHitPoint;
+            }
+            else
+            {
+                Moving();
+                isMoving = true;
+            }
         }
-        else
-        {
-            isMoving = true;
-        }
-        Moving();
+    }
+
+    public void SetLastHitPoint(Vector3 hitPoint)
+    {
+        lastHitPoint = hitPoint;
     }
 
     //Moving
@@ -175,34 +187,23 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("UnBrick"))
         {
-            if (brickList.Count > 0 && !playerPassed)
+            if (brickList.Count > 0)
             {
                 RemoveBrick();
-                playerPassed = true;
             }
+            other.gameObject.tag = "Passed";
         }
 
         if (other.gameObject.CompareTag("Finish"))
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<BoxController>().HitPlayer();
         }
 
         if (other.gameObject.CompareTag("FinishPoint"))
         {
             ClearBrick();
-
-            GameObject winBox = Instantiate(winBoxPrefab, transform.position + new Vector3(0, -0.5f, 3), Quaternion.Euler(-90, 0, -180));
-            winBox.SetActive(true);
             //phat di su kien khi win game
             winGameEvent?.Invoke();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("UnBrick"))
-        {
-            playerPassed = false;
         }
     }
 }
