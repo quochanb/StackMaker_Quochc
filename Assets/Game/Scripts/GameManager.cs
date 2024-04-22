@@ -29,14 +29,14 @@ public class GameManager : MonoBehaviour
     {
         UIManager.startGameEvent += OnPlayGame;
         UIManager.pauseGameEvent += OnPauseGame;
-        SettingUI.continueGameEvent += OnPlayGame;
+        SettingUI.resumeGameEvent += OnPlayGame;
     }
 
     private void OnDisable()
     {
         UIManager.startGameEvent -= OnPlayGame;
         UIManager.pauseGameEvent -= OnPauseGame;
-        SettingUI.continueGameEvent -= OnPlayGame;
+        SettingUI.resumeGameEvent -= OnPlayGame;
     }
 
     public void ChangeGameState(GameState newState)
@@ -65,4 +65,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
     }
+
+    public void OnContinue()
+    {
+        StartCoroutine(DelayCallStartGame());
+    }   
+    
+    IEnumerator DelayCallStartGame()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
 }

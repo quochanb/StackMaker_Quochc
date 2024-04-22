@@ -9,15 +9,15 @@ public class SettingUI : MonoBehaviour
     public delegate void RetryGameDelegate();
     public static RetryGameDelegate retryGameEvent;
     public delegate void ContinueGameDelegate();
-    public static ContinueGameDelegate continueGameEvent;
+    public static ContinueGameDelegate resumeGameEvent;
 
-    [SerializeField] private Button retryBtn, continueBtn;
+    [SerializeField] private Button retryBtn, resumeBtn;
 
     // Start is called before the first frame update
     void Start()
     {
         retryBtn.onClick.AddListener(OnRetryGame);
-        continueBtn.onClick.AddListener(OnContinueGame);
+        resumeBtn.onClick.AddListener(OnContinueGame);
     }
 
     private void OnRetryGame()
@@ -30,7 +30,7 @@ public class SettingUI : MonoBehaviour
     private void OnContinueGame()
     {
         gameObject.SetActive(false);
-        continueGameEvent?.Invoke();
+        resumeGameEvent?.Invoke();
         GameManager.instance.ChangeGameState(GameState.Play);
     }
 }

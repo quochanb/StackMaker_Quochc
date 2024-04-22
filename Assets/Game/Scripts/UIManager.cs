@@ -12,12 +12,13 @@ public class UIManager : MonoBehaviour
     public delegate void PauseGameDelegate();
     public static StartGameDelegate pauseGameEvent;
     [SerializeField] private GameObject menuUI, gameUI, settingUI, winUI;
-    [SerializeField] private Button startBtn, settingBtn;
+    [SerializeField] private Button startBtn, settingBtn, continueBtn;
     // Start is called before the first frame update
     void Start()
     {
         startBtn.onClick.AddListener(OnStartGame);
         settingBtn.onClick.AddListener(OnPauseGame);
+        continueBtn.onClick.AddListener(OnContinue);
         GameManager.instance.ChangeGameState(GameState.Pause);
     }
 
@@ -37,6 +38,15 @@ public class UIManager : MonoBehaviour
         gameUI.SetActive(true);
         startGameEvent?.Invoke();
         StartCoroutine(DelayCallChangeState());
+    }
+
+    private void OnContinue()
+    {
+        int levelIndex = LevelManager.Instance.LoadLevel();
+        LevelManager.Instance.SpawnLevel(levelIndex);
+        menuUI.SetActive(false);
+        StartCoroutine(DelayCallChangeState());
+        
     }
 
     private void OnPauseGame()
@@ -60,6 +70,7 @@ public class UIManager : MonoBehaviour
     IEnumerator DelayCallChangeState()
     {
         yield return new WaitForSeconds(1f);
+        Debug.Log("Run after co");
         GameManager.instance.ChangeGameState(GameState.Play);
     }
 }

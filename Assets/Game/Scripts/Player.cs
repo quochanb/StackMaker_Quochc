@@ -17,12 +17,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private LayerMask brickLayer, unBrickLayer;
-    [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite, winBoxPrefab;
+    [SerializeField] private GameObject brickPrefab, brickHolder, playerSprite;
     private Direction direction;
     private Vector2 startPosition, endPosition;
     private Vector3 lastHitPoint;
     private List<GameObject> brickList = new List<GameObject>();
-    //private GameState gameState;
+    
     private bool isMoving = false;
 
     private void Awake()
