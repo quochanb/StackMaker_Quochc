@@ -13,8 +13,7 @@ public class SettingUI : MonoBehaviour
 
     [SerializeField] private Button retryBtn, resumeBtn;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         retryBtn.onClick.AddListener(OnRetryGame);
         resumeBtn.onClick.AddListener(OnContinueGame);

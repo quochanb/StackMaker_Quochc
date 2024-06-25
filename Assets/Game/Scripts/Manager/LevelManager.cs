@@ -14,8 +14,7 @@ public class LevelManager : Singleton<LevelManager>
     private int currentMapIndex = 0;
     private int currentLevelIndex = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //instantiate map
         currentMap = Instantiate(levelPrefab[currentMapIndex], Vector3.zero, Quaternion.identity);

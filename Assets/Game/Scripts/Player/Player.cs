@@ -30,12 +30,12 @@ public class Player : MonoBehaviour
         instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         lastHitPoint = transform.position;
     }
 
-    void Update()
+    private void Update()
     {
         if (GameManager.instance.currentState == GameState.Play)
         {
@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
     //Xac dinh huong vuot cua nguoi choi
     private void GetInput()
     {
-        //Check neu dang di chuyen
         if (!isMoving)
         {
             if (Input.GetMouseButtonDown(0))

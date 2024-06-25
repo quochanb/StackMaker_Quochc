@@ -7,7 +7,7 @@ public class ParticleWinGame : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particle;
     
-    void Start()
+    private void Start()
     {
         particle = GetComponent<ParticleSystem>();
     }

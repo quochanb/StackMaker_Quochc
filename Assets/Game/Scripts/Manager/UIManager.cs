@@ -13,8 +13,8 @@ public class UIManager : MonoBehaviour
     public static StartGameDelegate pauseGameEvent;
     [SerializeField] private GameObject menuUI, gameUI, settingUI, winUI;
     [SerializeField] private Button startBtn, settingBtn, continueBtn;
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
         startBtn.onClick.AddListener(OnStartGame);
         settingBtn.onClick.AddListener(OnPauseGame);
@@ -70,7 +70,6 @@ public class UIManager : MonoBehaviour
     IEnumerator DelayCallChangeState()
     {
         yield return new WaitForSeconds(1f);
-        Debug.Log("Run after co");
         GameManager.instance.ChangeGameState(GameState.Play);
     }
 }

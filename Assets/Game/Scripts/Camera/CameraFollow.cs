@@ -9,14 +9,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float smoothTime;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
+    private void LateUpdate()
     {
         Vector3 camPos = target.position + offset;
         Vector3 smoothPos = Vector3.Lerp(transform.position, camPos, smoothTime);
