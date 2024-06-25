@@ -25,11 +25,13 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         Player.winGameEvent += OnWinGame;
+        SettingUI.mainMenuEvent += OnMainMenu;
     }
 
     private void OnDisable()
     {
         Player.winGameEvent -= OnWinGame;
+        SettingUI.mainMenuEvent -= OnMainMenu;
     }
 
     private void OnStartGame()
@@ -45,8 +47,9 @@ public class UIManager : MonoBehaviour
         int levelIndex = LevelManager.Instance.LoadLevel();
         LevelManager.Instance.SpawnLevel(levelIndex);
         menuUI.SetActive(false);
-        StartCoroutine(DelayCallChangeState());
-        
+        gameUI.SetActive(true);
+        //StartCoroutine(DelayCallChangeState());
+        GameManager.instance.OnContinue();
     }
 
     private void OnPauseGame()
@@ -61,6 +64,12 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DelayTime());
     }
 
+    private void OnMainMenu()
+    {
+        gameUI.SetActive(false);
+        menuUI.SetActive(true);
+    }
+
     IEnumerator DelayTime()
     {
         yield return new WaitForSeconds(2f);
@@ -69,7 +78,7 @@ public class UIManager : MonoBehaviour
     }
     IEnumerator DelayCallChangeState()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         GameManager.instance.ChangeGameState(GameState.Play);
     }
 }

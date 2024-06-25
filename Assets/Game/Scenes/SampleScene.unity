@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 105385905}
   - component: {fileID: 105385904}
   m_Layer: 5
-  m_Name: RetryBtn
+  m_Name: MainMenuBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e30bc260d2fd041aca5f3474545595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retryBtn: {fileID: 105385904}
+  mainMenuBtn: {fileID: 105385904}
   resumeBtn: {fileID: 896177771}
 --- !u!1 &513557390
 GameObject:
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: retry
+  m_text: main menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}

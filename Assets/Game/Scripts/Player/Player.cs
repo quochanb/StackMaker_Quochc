@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ClearBrick()
+    public void ClearBrick()
     {
         //destroy toan bo vien gach trong list
         foreach (var brick in brickList)

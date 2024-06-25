@@ -6,24 +6,24 @@ using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour
 {
-    public delegate void RetryGameDelegate();
-    public static RetryGameDelegate retryGameEvent;
+    public delegate void MainMenuDelegate();
+    public static MainMenuDelegate mainMenuEvent;
     public delegate void ContinueGameDelegate();
     public static ContinueGameDelegate resumeGameEvent;
 
-    [SerializeField] private Button retryBtn, resumeBtn;
+    [SerializeField] private Button mainMenuBtn, resumeBtn;
 
     private void Start()
     {
-        retryBtn.onClick.AddListener(OnRetryGame);
+        mainMenuBtn.onClick.AddListener(OnMainMenu);
         resumeBtn.onClick.AddListener(OnContinueGame);
     }
 
-    private void OnRetryGame()
+    private void OnMainMenu()
     {
         gameObject.SetActive(false);
-        retryGameEvent?.Invoke();
-        GameManager.instance.ChangeGameState(GameState.Play);
+        mainMenuEvent?.Invoke();
+        GameManager.instance.ChangeGameState(GameState.Pause);
     }
 
     private void OnContinueGame()

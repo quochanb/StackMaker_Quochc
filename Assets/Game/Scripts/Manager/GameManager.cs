@@ -68,12 +68,14 @@ public class GameManager : MonoBehaviour
 
     public void OnContinue()
     {
+        ChangeGameState(GameState.Play);
         StartCoroutine(DelayCallStartGame());
     }   
     
     IEnumerator DelayCallStartGame()
     {
         yield return new WaitForSeconds(1f);
+        
     }
 
 }

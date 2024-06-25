@@ -28,33 +28,40 @@ public class LevelManager : Singleton<LevelManager>
     {
         WinUI.retryGameEvent += OnRetryGame;
         WinUI.nextLevelEvent += OnNextLevel;
-        SettingUI.retryGameEvent += OnRetryGame;
+        SettingUI.mainMenuEvent += OnMainMenu;
     }
 
     private void OnDisable()
     {
         WinUI.retryGameEvent -= OnRetryGame;
         WinUI.nextLevelEvent -= OnNextLevel;
-        SettingUI.retryGameEvent -= OnRetryGame;
+        SettingUI.mainMenuEvent -= OnMainMenu;
     }
 
     private void OnNextLevel()
     {
-        if (currentMapIndex < levelPrefab.Length)
+        if (currentMapIndex < levelPrefab.Length - 1)
         {
             currentMapIndex++;
-            SaveLevel(currentMapIndex);
-            SpawnLevel(currentMapIndex);
         }
         else
         {
-            Debug.Log("No more level to load");
+            //Debug.Log("No more level to load");
+            currentMapIndex = 0;
         }
+        SaveLevel(currentMapIndex);
+        SpawnLevel(currentMapIndex);
     }
 
     private void OnRetryGame()
     {
         SpawnLevel(LoadLevel());
+    }
+
+    private void OnMainMenu()
+    {
+        SpawnLevel(LoadLevel());
+        Player.instance.ClearBrick();
     }
 
     public void SaveLevel(int levelIndex)
