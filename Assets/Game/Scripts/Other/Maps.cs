@@ -5,5 +5,9 @@ using UnityEngine;
 public class Maps : MonoBehaviour
 {
     public Transform playerPos, finishPos;
-
+    
+    public Transform GetStartPoint()
+    {
+        return playerPos;
+    }
 }

@@ -54,8 +54,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnRetryGame()
     {
-        string currentLevelName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentLevelName);
+        SpawnLevel(LoadLevel());
     }
 
     public void SaveLevel(int levelIndex)
